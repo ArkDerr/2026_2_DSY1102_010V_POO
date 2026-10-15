@@ -7,36 +7,36 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cl.duoc.miprimerproyectojavafx.controller.MenuController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cl.duoc.miprimerproyectojavafx.controller.MenuController">
    <children>
-      <Label layoutX="124.0" layoutY="31.0" text="Mantenedor de Personas">
+      <Label layoutX="224.0" layoutY="107.0" text="Mantenedor de Personas">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <VBox layoutX="250.0" layoutY="100.0" prefHeight="200.0" prefWidth="100.0">
+      <VBox layoutX="350.0" layoutY="192.0" prefHeight="200.0" prefWidth="100.0">
          <children>
             <Button fx:id="btnCrear" mnemonicParsing="false" onAction="#onCrearButtonClick" prefWidth="150.0" text="Crear">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnListar" mnemonicParsing="false" prefWidth="150.0" text="Listar">
+            <Button fx:id="btnListar" mnemonicParsing="false" onAction="#onListarButtonClick" prefWidth="150.0" text="Listar">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnBuscar" mnemonicParsing="false" prefWidth="150.0" text="Buscar">
+            <Button fx:id="btnBuscar" mnemonicParsing="false" onAction="#onBuscarButtonClick" prefWidth="150.0" text="Buscar">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnEditar" mnemonicParsing="false" prefWidth="150.0" text="Editar">
+            <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#onEditarButtonClick" prefWidth="150.0" text="Editar">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnEliminar" mnemonicParsing="false" prefWidth="150.0" text="Elimnar">
+            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#onEliminarButtonClick" prefWidth="150.0" text="Eliminar">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>

@@ -10,7 +10,7 @@ import java.io.IOException;
 public class MantenedorApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MantenedorApplication.class.getResource("menu-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MantenedorApplication.class.getResource("/cl/duoc/miprimerproyectojavafx/view/menu-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setTitle("Mantenedor");
         stage.setScene(scene);
