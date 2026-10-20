@@ -10,4 +10,6 @@ module cl.duoc.miprimerproyectojavafx {
     exports cl.duoc.miprimerproyectojavafx;
     exports cl.duoc.miprimerproyectojavafx.util;
     opens cl.duoc.miprimerproyectojavafx.util to javafx.fxml;
+
+    opens cl.duoc.miprimerproyectojavafx.model to javafx.base;
 }

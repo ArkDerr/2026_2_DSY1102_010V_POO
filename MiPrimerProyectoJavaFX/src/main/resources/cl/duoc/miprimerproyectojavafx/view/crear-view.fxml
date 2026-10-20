@@ -95,7 +95,7 @@
             <ComboBox fx:id="cmbTipoPersona" prefHeight="26.0" prefWidth="179.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
          </children>
       </GridPane>
-      <Button fx:id="btnLimpiar" layoutX="374.0" layoutY="417.0" mnemonicParsing="false" prefWidth="100.0" text="Limpiar" />
-      <Button fx:id="btnGuardar" layoutX="538.0" layoutY="417.0" mnemonicParsing="false" prefWidth="100.0" text="Guardar" />
+      <Button fx:id="btnLimpiar" layoutX="374.0" layoutY="417.0" mnemonicParsing="false" onAction="#onLimpiarButtonClick" prefWidth="100.0" text="Limpiar" />
+      <Button fx:id="btnGuardar" layoutX="538.0" layoutY="417.0" mnemonicParsing="false" onAction="#onGuardarButtonClick" prefWidth="100.0" text="Guardar" />
    </children>
 </AnchorPane>
