@@ -43,4 +43,45 @@ public class PersonaRepository {
         return new ArrayList<>(personas);
     }
 
+    public Persona buscarPorRut(String rut){
+        if (rut==null || rut.isEmpty()){
+            throw new IllegalArgumentException("El rut no puede ser nulo.");
+        }
+
+        for (Persona persona : personas) {
+            if (persona.getRut().equals(rut)) {
+                return persona;
+            }
+        }
+        return null;
+    }
+
+    public void actualizar(Persona persona) {
+        if (persona == null) {
+            throw new IllegalArgumentException("La persona no puede ser nula.");
+        }
+
+        for (Persona p : personas) {
+            if (p.getRut().equals(persona.getRut())) {
+                p.setNombre(persona.getNombre());
+                p.setApellido(persona.getApellido());
+                p.setFechaNacimiento(persona.getFechaNacimiento());
+                return;
+            }
+        }
+        throw new IllegalArgumentException("No existe una persona con el rut: " + persona.getRut());
+    }
+
+    public void eliminar(String rut) {
+        if (rut==null || rut.isEmpty()){
+            throw new IllegalArgumentException("El rut no puede ser nulo.");
+        }
+        Persona personaEliminar = buscarPorRut(rut);
+
+        if (personaEliminar == null) {
+            throw new IllegalArgumentException("No existe una persona con el rut: " + rut);
+        }
+        personas.remove(personaEliminar);
+    }
+
 }
