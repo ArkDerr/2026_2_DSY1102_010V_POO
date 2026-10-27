@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cl.duoc.aurora.controller.MainController">
+   <children>
+      <Label layoutX="134.0" layoutY="38.0" text="Registro Materiales" />
+      <Label layoutX="516.0" layoutY="38.0" text="Materiales Registrados" />
+      <GridPane layoutX="44.0" layoutY="78.0" prefHeight="339.0" prefWidth="282.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Tipo:" />
+            <Label text="Código:" GridPane.rowIndex="1" />
+            <Label text="Título:" GridPane.rowIndex="2" />
+            <Label text="Días:" GridPane.rowIndex="3" />
+            <Label text="Autor:" GridPane.rowIndex="4" />
+            <ComboBox fx:id="cbxTipo" prefWidth="150.0" GridPane.columnIndex="1" />
+            <TextField fx:id="txtCodigo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtTitulo" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtDias" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtAutor" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <CheckBox fx:id="chkEspecial" mnemonicParsing="false" text="Especial" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <CheckBox fx:id="chkNovedad" mnemonicParsing="false" text="Novedad" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+         </children>
+      </GridPane>
+      <TableView fx:id="tblMateriales" layoutX="366.0" layoutY="78.0" prefHeight="367.0" prefWidth="421.0">
+        <columns>
+          <TableColumn fx:id="colTipo" prefWidth="75.0" text="Tipo" />
+          <TableColumn fx:id="colCodigo" prefWidth="75.0" text="Código" />
+            <TableColumn fx:id="colTitulo" prefWidth="75.0" text="Título" />
+            <TableColumn fx:id="colDias" prefWidth="75.0" text="Días" />
+            <TableColumn fx:id="colTarifa" prefWidth="75.0" text="Tarifa" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Button fx:id="btnGuardar" layoutX="214.0" layoutY="484.0" mnemonicParsing="false" prefWidth="100.0" text="Guardar" />
+      <Button fx:id="btnEliminar" layoutX="609.0" layoutY="484.0" mnemonicParsing="false" prefWidth="100.0" text="Eliminar" />
+      <Label fx:id="lblMensaje" layoutX="44.0" layoutY="538.0" text="El Mensaje" />
+   </children>
+</AnchorPane>

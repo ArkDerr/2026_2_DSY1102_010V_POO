@@ -1,0 +1,95 @@
+PROYECTO BASE - EVALUACIÓN PARCIAL 2
+Biblioteca Aurora - DSY1102 Programación Orientada a Objetos
+==========================================================
+
+CONTENIDO
+---------
+pom.xml                                   Proyecto Maven para Java 21, con las
+                                          dependencias de JavaFX ya incluidas.
+src/main/java/cl/duoc/aurora/
+    Launcher.java                         Punto de entrada: ejecuta esta clase para iniciar la aplicación.
+    App.java                              Aplicación JavaFX: carga la vista principal y abre la ventana.
+src/main/java/cl/duoc/aurora/model/       Modelo del sistema (ya implementado):
+    Prestamo.java                         Interfaz de materiales disponibles para préstamo.
+    Material.java                         Clase abstracta con datos y validaciones comunes.
+    Libro.java                            Subclase con cálculo de tarifa y recargo por novedad.
+    Revista.java                          Subclase con cálculo de tarifa y recargo por edición especial.
+src/main/resources/cl/duoc/aurora/view/  Carpeta para las vistas FXML (vacía).
+
+CÓMO ABRIR EL PROYECTO EN INTELLIJ IDEA
+---------------------------------------
+1. Descomprime este archivo en una carpeta de trabajo.
+2. En IntelliJ IDEA: File > Open... y selecciona Biblioteca_Aurora_EP2_Base.
+3. Si IntelliJ lo pregunta, elige "Trust Project" y ábrelo como proyecto Maven.
+4. Verifica que el JDK del proyecto sea 21 (File > Project Structure > Project).
+5. Recarga Maven y comprueba que se descargaron javafx-controls y javafx-fxml.
+
+CÓMO EJECUTAR LA APLICACIÓN
+---------------------------
+- IMPORTANTE: ejecuta la clase Launcher, NO la clase App.
+  En IntelliJ usa el botón Run junto al método main de Launcher.
+- También puedes ejecutar con Maven desde la carpeta del proyecto:
+      mvn javafx:run
+- La clase App carga la vista principal desde:
+      src/main/resources/cl/duoc/aurora/view/main-view.fxml
+  Debes crear ese archivo con Scene Builder. Mientras no exista, la aplicación
+  se detiene con el mensaje "No se encontró la vista principal".
+- Por lo tanto, ANTES de crear main-view.fxml es normal que todavía no aparezca
+  ninguna ventana de la aplicación. Eso también ocurre en el proyecto PataVerde.
+- Si ves "JavaFX runtime components are missing", confirma que la configuración
+  Run/Debug ejecuta cl.duoc.aurora.Launcher (y no cl.duoc.aurora.App).
+  Alternativamente, ejecuta "mvn javafx:run" desde Maven.
+
+LO QUE DEBES AGREGAR AL pom.xml
+-------------------------------
+- La dependencia de Gson, en el lugar indicado por el comentario.
+  Luego recarga el proyecto Maven ("Load Maven Changes" o
+  clic derecho en pom.xml > Maven > Reload Project).
+
+IMPORTANTE
+----------
+- No modifiques la lógica de las clases del modelo.
+- No es necesario modificar Launcher ni App.
+- Puedes agregar tus propios paquetes, clases y recursos al proyecto.
+- Debes construir la vista, el Controller, los DAO y el Repository.
+- No se incluyen archivos JSON al inicio: se crearán con la persistencia.
+
+OPERACIONES DISPONIBLES EN EL MODELO
+------------------------------------
+Material (clase abstracta)
+    Material() / Material(codigo, titulo, dias)
+    getCodigo() / setCodigo(String)
+    getTitulo() / setTitulo(String)
+    getDias()   / setDias(int)
+    calcularTarifa()   tarifa de préstamo según el tipo de material
+    getTipo()         "Libro" o "Revista"
+    toString()        código y título del material
+    Los métodos set rechazan datos inválidos con IllegalArgumentException:
+        código: no puede ser nulo ni vacío
+        título: no puede ser nulo ni vacío
+        días:   número entero entre 1 y 60
+
+Libro (extiende Material, implementa Prestamo)
+    Libro() / Libro(codigo, titulo, dias, autor, novedad)
+    getAutor()  / setAutor(String)
+    isNovedad() / setNovedad(boolean)
+    permitePrestamo()
+    calcularTarifa(): $500 por día, +20% si es novedad
+    setAutor rechaza texto nulo o vacío.
+
+Revista (extiende Material, implementa Prestamo)
+    Revista() / Revista(codigo, titulo, dias, especial)
+    isEspecial() / setEspecial(boolean)
+    permitePrestamo()
+    calcularTarifa(): $300 por día, +15% si es edición especial
+
+Prestamo (interfaz)
+    permitePrestamo()
+
+ARCHIVOS DE PERSISTENCIA QUE DEBES IMPLEMENTAR
+-----------------------------------------------
+- libros.json: lo administrará LibroDAO.
+- revistas.json: lo administrará RevistaDAO.
+- MaterialRepository mantendrá los registros y delegará la lectura y escritura.
+- Se debe leer al iniciar, guardar automáticamente al registrar y eliminar,
+  y no presentar error la primera vez si los archivos todavía no existen.
