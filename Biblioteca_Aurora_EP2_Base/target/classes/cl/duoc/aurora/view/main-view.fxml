@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cl.duoc.aurora.controller.MainController">
    <children>
       <Label layoutX="134.0" layoutY="38.0" text="Registro Materiales" />
@@ -58,8 +57,8 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button fx:id="btnGuardar" layoutX="214.0" layoutY="484.0" mnemonicParsing="false" prefWidth="100.0" text="Guardar" />
-      <Button fx:id="btnEliminar" layoutX="609.0" layoutY="484.0" mnemonicParsing="false" prefWidth="100.0" text="Eliminar" />
+      <Button fx:id="btnGuardar" layoutX="214.0" layoutY="484.0" mnemonicParsing="false" onAction="#registrar" prefWidth="100.0" text="Guardar" />
+      <Button fx:id="btnEliminar" layoutX="609.0" layoutY="484.0" mnemonicParsing="false" onAction="#eliminar" prefWidth="100.0" text="Eliminar" />
       <Label fx:id="lblMensaje" layoutX="44.0" layoutY="538.0" text="El Mensaje" />
    </children>
 </AnchorPane>

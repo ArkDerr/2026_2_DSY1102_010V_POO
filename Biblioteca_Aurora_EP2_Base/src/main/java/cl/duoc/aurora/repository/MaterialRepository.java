@@ -62,6 +62,14 @@ public class MaterialRepository {
             }  catch(IOException e){
                 libros.add(libro); throw e;
             }
+        } else if(material instanceof Revista revista){
+            if (!revistas.remove(revista)) return;
+            try{
+                revistaDAO.guardar(revistas);
+
+            } catch(IOException e){
+                revistas.remove(revista); throw e;
+            }
         }
     }
 
