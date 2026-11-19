@@ -1,0 +1,94 @@
+PROYECTO BASE - EJERCICIO DE PREPARACIÓN
+Servicio Técnico TecnoFix - DSY1102 Programación Orientada a Objetos
+======================================================================
+
+CONTENIDO
+---------
+pom.xml                                   Proyecto Maven configurado para Java 21, con las
+                                          dependencias de JavaFX y Gson ya incluidas.
+
+src/main/java/cl/duoc/tecnofix/
+    Launcher.java                         Punto de entrada: ejecuta esta clase para iniciar la aplicación.
+    App.java                              Aplicación JavaFX: carga la vista principal y abre la ventana.
+
+src/main/java/cl/duoc/tecnofix/model/    Modelo del sistema (ya implementado):
+    Revendible.java
+    Equipo.java
+    Notebook.java
+    Monitor.java
+
+src/main/java/cl/duoc/tecnofix/dao/      Acceso a datos:
+    EquipoDAO.java                       Interfaz con las operaciones de almacenamiento.
+    EquipoArchivoDAO.java                Implementación que guarda en notebooks.json y monitores.json.
+    PersistenciaException.java            Error que informa que una operación de almacenamiento falló.
+
+src/main/java/cl/duoc/tecnofix/controller/
+    MainController.java                   Controlador de la ventana principal.
+
+src/main/resources/cl/duoc/tecnofix/view/
+    main-view.fxml                        Ventana principal (formulario, tabla y área de mensajes).
+
+CÓMO ABRIR EL PROYECTO EN INTELLIJ IDEA
+---------------------------------------
+1. Descomprime este archivo en una carpeta de trabajo.
+2. En IntelliJ IDEA: File > Open... y selecciona la carpeta TecnoFix_EP3_Base.
+3. Si IntelliJ lo pregunta, elige "Trust Project" y abre el proyecto como proyecto Maven.
+4. Verifica que el JDK del proyecto sea 21 (File > Project Structure > Project).
+
+CÓMO EJECUTAR LA APLICACIÓN
+---------------------------
+- Ejecuta la clase Launcher (botón Run junto al método main).
+- Tal como se entrega, la aplicación funciona guardando la información en los
+  archivos notebooks.json y monitores.json, en la carpeta raíz del proyecto.
+
+LO QUE DEBES AGREGAR AL pom.xml
+-------------------------------
+- Las dependencias del driver JDBC de Oracle y la biblioteca del Wallet, en el lugar indicado por el comentario.
+  Luego recarga el proyecto Maven (ícono "Load Maven Changes" o
+  clic derecho en pom.xml > Maven > Reload Project).
+
+IMPORTANTE
+----------
+- No modifiques las clases del modelo ni la interfaz EquipoDAO.
+- No es necesario modificar Launcher, App ni la vista main-view.fxml.
+- Puedes agregar tus propios paquetes, clases y recursos al proyecto.
+
+OPERACIONES DISPONIBLES EN EL MODELO
+------------------------------------
+Equipo (clase abstracta)
+    getId()     / setId(int)          identificador; vale 0 mientras no se ha almacenado
+    getNombre() / setNombre(String)
+    getEdad()   / setEdad(int)
+    getPeso()   / setPeso(double)
+    calcularCostoRevision()   costo de revisión según el tipo de equipo
+    getTipo()                 "Notebook" o "Monitor"
+    toString()                nombre y edad del equipo
+
+    Los métodos set de nombre, edad y peso rechazan datos inválidos con un
+    mensaje que explica el motivo:
+        nombre: no puede ser nulo ni vacío
+        edad:   entre 0 y 30 años
+        peso:   mayor que cero
+
+Notebook (extiende Equipo, implementa Revendible)
+    Notebook()                                  constructor sin parámetros
+    Notebook(nombre, edad, peso, marca, diagnosticado)
+    getMarca()    / setMarca(String)
+    isDiagnosticado() / setDiagnosticado(boolean)
+    estaDisponibleParaReventa()
+    marcarDisponibleParaReventa()
+
+Monitor (extiende Equipo)
+    Monitor()                                   constructor sin parámetros
+    Monitor(nombre, edad, peso, intensivo)
+    isIntensivo() / setIntensivo(boolean)
+
+OPERACIONES DE LA INTERFAZ EquipoDAO
+-------------------------------------
+    obtenerTodos()          retorna todos los equipos, cada uno con su tipo real e identificador
+    insertar(Equipo)       almacena un equipo nuevo (el identificador lo genera el almacenamiento)
+    actualizar(Equipo)     reemplaza los datos del equipo con el mismo identificador
+    eliminar(int id)        elimina el equipo con ese identificador
+
+    Si una operación no puede completarse, debe lanzar PersistenciaException
+    con un mensaje que explique el problema; la ventana lo muestra al usuario.
