@@ -1,6 +1,7 @@
 package cl.duoc.tecnofix.controller;
 
 import cl.duoc.tecnofix.dao.EquipoArchivoDAO;
+import cl.duoc.tecnofix.dao.EquipoBDDAO;
 import cl.duoc.tecnofix.dao.EquipoDAO;
 import cl.duoc.tecnofix.dao.PersistenciaException;
 import cl.duoc.tecnofix.model.Monitor;
@@ -67,6 +68,7 @@ public class MainController {
 
     /** Implementación de almacenamiento que utiliza la aplicación. */
     private final EquipoDAO dao = new EquipoArchivoDAO();
+    private final EquipoDAO daoBD = new EquipoBDDAO();
 
     /** Equipo que se está editando; null cuando el formulario está en modo registro. */
     private Equipo equipoEnEdicion;
@@ -120,11 +122,13 @@ public class MainController {
 
         try {
             if (equipoEnEdicion == null) {
-                dao.insertar(equipo);
+                //dao.insertar(equipo);
+                daoBD.insertar(equipo);
                 mostrarMensaje(equipo.getNombre() + " (" + equipo.getTipo() + ") registrado correctamente.");
             } else {
                 equipo.setId(equipoEnEdicion.getId());
-                dao.actualizar(equipo);
+                //dao.actualizar(equipo);
+                daoBD.actualizar(equipo);
                 mostrarMensaje(equipo.getNombre() + " (" + equipo.getTipo() + ") actualizado correctamente.");
             }
         } catch (PersistenciaException e) {
@@ -182,7 +186,8 @@ public class MainController {
         }
 
         try {
-            dao.eliminar(seleccionado.getId());
+            //dao.eliminar(seleccionado.getId());
+            daoBD.eliminar(seleccionado.getId());
         } catch (PersistenciaException e) {
             mostrarMensaje("Error al eliminar la información: " + e.getMessage());
             return;
@@ -215,7 +220,8 @@ public class MainController {
      */
     private boolean recargarTabla() {
         try {
-            equipos.setAll(dao.obtenerTodos());
+            //equipos.setAll(dao.obtenerTodos());
+            equipos.setAll(daoBD.obtenerTodos());
             return true;
         } catch (PersistenciaException e) {
             equipos.clear();

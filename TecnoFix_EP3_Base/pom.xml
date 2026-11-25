@@ -36,7 +36,6 @@
             <version>2.11.0</version>
         </dependency>
         <!-- Agrega aquí las dependencias del driver JDBC de Oracle y la biblioteca del Wallet -->
-
         <!-- Driver JDBC que permite ejecutar SQL desde Java. -->
         <dependency>
             <groupId>com.oracle.database.jdbc</groupId>
@@ -50,7 +49,6 @@
             <artifactId>oraclepki</artifactId>
             <version>23.9.0.25.07</version>
         </dependency>
-
     </dependencies>
 
     <build>
